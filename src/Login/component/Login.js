@@ -8,29 +8,17 @@ import { useStyles } from "../style/Style";
 const Login = (props) => {
   const classes = useStyles;
   const history = useHistory();
-  const [statepassword, setStatepassowrd] = useState("");
-  const [stateuserName, setStateusername] = useState("");
   const [usernameError, setUsernameError] = useState(false);
   const [passwordError, setPasswordError] = useState(false);
   const onFailure = (res) => {
-    //alert("please login again ");
     console.log(res);
   };
   const onSubmit = () => {
     validate();
   };
   const validate = () => {
-    if (
-      Credential.some(
-        (item) => item.Username === stateuserName || stateuserName === ""
-      )
-    ) {
-      if (
-        Credential.some(
-          (item) => item.password === statepassword || !statepassword === ""
-        )
-      ) {
-        //alert("login sucessfully");
+    if (Credential.some((item) => item.Username === props.username)) {
+      if (Credential.some((item) => item.password === props.password)) {
         props.submitStatus();
         return history.push("/");
       } else {
@@ -51,21 +39,19 @@ const Login = (props) => {
 
   return (
     <>
-      <div style={{ textAlign: "left" }}>
+      <div className={classes.usernamediv}>
         <div>
           <TextField
+            className={classes.TextFielddiv}
             label="Username"
             placeholder="Enter UserName"
             value={props.username}
             name="Username"
-            // {...register("username", { required: true })}
-            onChange={(e) => {
-              setStateusername(e.target.value);
-            }}
+            onChange={props.submitUsername}
           />
           {usernameError && (
             <FormHelperText className={classes.helpertext}>
-              please fill it correct
+              Please Enter valid Username
             </FormHelperText>
           )}
         </div>
@@ -76,13 +62,11 @@ const Login = (props) => {
             name="password"
             autoComplete="current-password"
             value={props.password}
-            onChange={(e) => {
-              setStatepassowrd(e.target.value);
-            }}
+            onChange={props.submitPassword}
           />
           {passwordError && (
             <FormHelperText className={classes.helpertext}>
-              please fill it correct
+              Please Fill Valid Password
             </FormHelperText>
           )}
         </div>
@@ -97,20 +81,16 @@ const Login = (props) => {
           >
             Login
           </Button>
-          <div>
-            <GoogleLogin
-              clientId="889107126365-46cjn6g2er5tr7964sdannsnnf53l4hg.apps.googleusercontent.com"
-              buttonText="Login with Google"
-              onSuccess={onSucess}
-              onFailure={onFailure}
-              CookiePolicy={"single-host-origin"}
-              isSignedIn={false}
-            />
-          </div>
+
+          <GoogleLogin
+            clientId="889107126365-46cjn6g2er5tr7964sdannsnnf53l4hg.apps.googleusercontent.com"
+            buttonText="Login"
+            onSuccess={onSucess}
+            onFailure={onFailure}
+            CookiePolicy={"single-host-origin"}
+            isSignedIn={false}
+          />
         </div>
-        {/* <div>
-          {props.status && <span>plese login with Username or password </span>}
-        </div> */}
       </div>
     </>
   );
@@ -118,9 +98,15 @@ const Login = (props) => {
 const mapDispatchtoprops = (dispatch) => {
   return {
     submitStatus: (status) => dispatch({ type: "STATUS", status: true }),
+    submitUsername: (e) =>
+      dispatch({ type: "USERNAME", username: e.target.value }),
+    submitPassword: (e) =>
+      dispatch({ type: "PASSWORD", password: e.target.value }),
   };
 };
 const mapStateToProps = (state) => ({
   status: state.status,
+  username: state.username,
+  password: state.password,
 });
 export default connect(mapStateToProps, mapDispatchtoprops)(Login);

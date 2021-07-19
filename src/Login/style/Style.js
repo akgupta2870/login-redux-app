@@ -1,4 +1,4 @@
-import { makeStyles } from "@material-ui/core";
+import { makeStyles, TextField } from "@material-ui/core";
 export const useStyles = makeStyles((theme) => ({
   margin: {
     margin: theme.spacing(1),
@@ -16,5 +16,11 @@ export const useStyles = makeStyles((theme) => ({
   },
   helpertext: {
     color: "red",
+  },
+  usernamediv: {
+    textAlign: "left",
+  },
+  TextFielddiv: {
+    minWidth: 550,
   },
 }));
