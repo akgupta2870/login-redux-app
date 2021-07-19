@@ -1,8 +1,12 @@
+import Nav from "./Nav";
 const Profile = (props) => {
   console.log(props);
   return (
     <>
       <div>
+        <div>
+          <Nav />
+        </div>
         <h1>This is profile panel </h1>
         <h2>What is a profile</h2>
         <div>

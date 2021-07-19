@@ -1,8 +1,12 @@
+import Nav from "./Nav";
 //import { TabPanel } from "@material-ui/lab";
 const About = () => {
   return (
     <>
       <div>
+        <div>
+          <Nav />
+        </div>
         <div>
           <h2>What is a About?</h2>
           <p>
