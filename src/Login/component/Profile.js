@@ -1,4 +1,5 @@
 const Profile = (props) => {
+  console.log(props);
   return (
     <>
       <div>
@@ -10,11 +11,6 @@ const Profile = (props) => {
           <h2>DOB </h2>
           <h2>adress </h2>
           <h2>city </h2>
-          <div>
-            {props.Name}
-            {props.DOB}
-            {props.city}
-          </div>
         </div>
         <p>
           Simply put, a paragraph is a collection of sentences all related to a

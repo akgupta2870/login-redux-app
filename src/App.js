@@ -1,15 +1,15 @@
 import "./App.css";
-//import { Login } from "./Login/login";
-import Home from "./Login/Home";
+import Home from "./Login/component/Home";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import About from "./Login/About";
-import Users from "./Login/Users";
-import Profile from "./Login/Profile";
-import Login from "./Login/Login";
+import About from "./Login/component/About";
+import Users from "./Login/component/Users";
+import Profile from "./Login/component/Profile";
+import Login from "./Login/component/Login";
 import { connect } from "react-redux";
-import { Signup } from "./Login/Signup";
+//import { Signup } from "./Login/component/Signup";
 //import { PrivateRoute } from "./Login/PrivateRoute";
 export function App(props) {
+  console.log(props.status);
   return (
     //<Signup />
     <Router>
@@ -22,9 +22,6 @@ export function App(props) {
         <Route path="/login">{props.status ? <Login /> : <Login />}</Route>
         <Route path="/about">{props.status ? <About /> : <Login />}</Route>
         <Route path="/users">{props.status ? <Users /> : <Login />}</Route>
-        <Route path="/signup">
-          <Signup />
-        </Route>
       </Switch>
     </Router>
   );

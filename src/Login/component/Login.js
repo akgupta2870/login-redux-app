@@ -1,51 +1,54 @@
-import { TextField, Button } from "@material-ui/core";
+import { TextField, Button, FormHelperText } from "@material-ui/core";
 import { GoogleLogin } from "react-google-login";
 import { connect } from "react-redux";
 import { useState } from "react";
 import { useHistory } from "react-router-dom";
-import { Credential } from "./Credentials";
-
+import { Credential } from "../functionality/Credentials";
+import { useStyles } from "../style/Style";
 const Login = (props) => {
+  const classes = useStyles;
+  const history = useHistory();
+  const [statepassword, setStatepassowrd] = useState("");
+  const [stateuserName, setStateusername] = useState("");
+  const [usernameError, setUsernameError] = useState(false);
+  const [passwordError, setPasswordError] = useState(false);
   const onFailure = (res) => {
+    //alert("please login again ");
     console.log(res);
   };
-  //const store = createStore(rootReducer);
-  console.log(props);
-  console.log(props.status);
-  console.log(props.fetchusername);
-  console.log(props.fetchpassword);
-  const [statepassword, setStatepassowrd] = useState("");
-  const history = useHistory();
-  const [stateuserName, setStateusername] = useState("");
-  //const [statestatus, setStatestatus] = useState(false);
   const onSubmit = () => {
     validate();
-    console.log("clicked");
   };
   const validate = () => {
-    if (Credential.some((item) => item.Username === stateuserName)) {
-      //props.submitUsername(stateuserName);
-      if (Credential.some((item) => item.password === statepassword)) {
-        //setStatestatus(true);
-        alert("login sucessfully");
-        // props.submitPassword(statepassword);
-        props.submitStatus("true");
+    if (
+      Credential.some(
+        (item) => item.Username === stateuserName || stateuserName === ""
+      )
+    ) {
+      if (
+        Credential.some(
+          (item) => item.password === statepassword || !statepassword === ""
+        )
+      ) {
+        //alert("login sucessfully");
+        props.submitStatus();
         return history.push("/");
       } else {
-        alert("Enter valid Passowrd");
+        setPasswordError(true);
       }
     } else {
-      alert("Enter valid Username");
+      setUsernameError(true);
     }
   };
-  //const { store } = useContext(ReactReduxContext),props.submitUsername(),
+
   const onSucess = (res) => {
     props.submitStatus("true");
-    alert("login sucessfully");
+    //alert("login sucessfully");
+    props.submitStatus("true");
     history.push("/");
     console.log(res.profileObj);
   };
-  // const [output, dispatch] = useReducer(reducer, istate);
+
   return (
     <>
       <div style={{ textAlign: "left" }}>
@@ -55,13 +58,16 @@ const Login = (props) => {
             placeholder="Enter UserName"
             value={props.username}
             name="Username"
+            // {...register("username", { required: true })}
             onChange={(e) => {
               setStateusername(e.target.value);
-              //props.submitUsername();
-              // dispatch({ type: "USERNAME", payload: e.target.value })
             }}
-            //onChange={(e) => setState(e.target.value)}
           />
+          {usernameError && (
+            <FormHelperText className={classes.helpertext}>
+              please fill it correct
+            </FormHelperText>
+          )}
         </div>
         <div>
           <TextField
@@ -72,11 +78,13 @@ const Login = (props) => {
             value={props.password}
             onChange={(e) => {
               setStatepassowrd(e.target.value);
-              //props.submitPassword();
-              // (e) => this.props.submitPassword(e.target.value)
-              //    dispatch({ type: "PASSWORD", payload: e.target.value })
             }}
           />
+          {passwordError && (
+            <FormHelperText className={classes.helpertext}>
+              please fill it correct
+            </FormHelperText>
+          )}
         </div>
         <div>
           <Button
@@ -85,8 +93,6 @@ const Login = (props) => {
             color="primary"
             onClick={() => {
               onSubmit();
-              // props.submitStatus();
-              // dispatch({ type: "STATUS", payload: (e.target.value = true) }) ,onSubmit() its goes up
             }}
           >
             Login
@@ -102,26 +108,19 @@ const Login = (props) => {
             />
           </div>
         </div>
-        <div>
+        {/* <div>
           {props.status && <span>plese login with Username or password </span>}
-        </div>
+        </div> */}
       </div>
     </>
   );
 };
 const mapDispatchtoprops = (dispatch) => {
   return {
-    submitUsername: (e) =>
-      dispatch({ type: "USERNAME", username: e.target.value }),
-    submitPassword: (e) =>
-      dispatch({ type: "PASSWORD", password: e.target.value }),
-    submitStatus: (status) => dispatch({ type: "STATUS", status: status }),
+    submitStatus: (status) => dispatch({ type: "STATUS", status: true }),
   };
 };
-//export default connect(null, mapDispatchtoprops)(Form2);
 const mapStateToProps = (state) => ({
   status: state.status,
-  // fetchusername: state.Username,
-  // fetchpassword: state.password,
 });
 export default connect(mapStateToProps, mapDispatchtoprops)(Login);
