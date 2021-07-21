@@ -1,20 +1,20 @@
-import Nav from "./Nav";
+//import Nav from "./Nav";
 const Profile = (props) => {
   console.log(props);
   return (
     <>
       <div>
-        <div>
+        {/* <div>
           <Nav />
-        </div>
+        </div> */}
         <h1>This is profile panel </h1>
         <h2>What is a profile</h2>
         <div>
-          <h2>profile name </h2>
-          <h2>phone number </h2>
+          <h2>Profile name </h2>
+          <h2>Phone number </h2>
           <h2>DOB </h2>
-          <h2>adress </h2>
-          <h2>city </h2>
+          <h2>Adress </h2>
+          <h2>City </h2>
         </div>
         <p>
           Simply put, a paragraph is a collection of sentences all related to a

@@ -3,9 +3,10 @@ import { TabContext, TabList } from "@material-ui/lab";
 import { useHistory } from "react-router-dom";
 import PersonPinIcon from "@material-ui/icons/PersonPin";
 import { connect } from "react-redux";
+//import { Redirect } from "react-router";
 export const Nav = (props) => {
   const history = useHistory();
-  console.log(props.status);
+
   return (
     <>
       <div>
@@ -18,6 +19,7 @@ export const Nav = (props) => {
                 onClick={() => {
                   console.log("profilestart");
                   return history.push("/profile");
+                  //<Redirect to="/profile" />;
                 }}
               />
               <Tab
@@ -26,16 +28,14 @@ export const Nav = (props) => {
                   history.push("/");
                 }}
               />
-              {/* {hide && ( */}
               <Tab
                 label="LOGIN"
                 disabled={props.status}
                 onClick={() => {
                   history.push("/login");
+                  //<Redirect to="/login" />;
                 }}
               />
-              {/* )} */}
-              {/* {!hide && ( */}
               <Tab
                 label="LOGOUT"
                 disabled={!props.status}
@@ -44,17 +44,18 @@ export const Nav = (props) => {
                   props.submitStatus();
                 }}
               />
-              {/* )} */}
               <Tab
                 label="ABOUT"
                 onClick={() => {
                   history.push("/about");
+                  //<Redirect to="/about" />;
                 }}
               />
               <Tab
                 label="USERS"
                 onClick={() => {
                   history.push("/users");
+                  //<Redirect to="/about" />;
                 }}
               />
             </TabList>

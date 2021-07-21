@@ -6,24 +6,28 @@ import Users from "./Login/component/Users";
 import Profile from "./Login/component/Profile";
 import Login from "./Login/component/Login";
 import { connect } from "react-redux";
+//import { Nav } from "./Login/component/Nav";
 //import { Signup } from "./Login/component/Signup";
 //import { PrivateRoute } from "./Login/PrivateRoute";
 export function App(props) {
   console.log(props.status);
   return (
-    //<Signup />
-    <Router>
-      <Switch>
-        <Route exact path="/">
-          <Home />
-        </Route>
-        {/* <PrivateRoute path="/hidden" component={hidden} /> */}
-        <Route path="/profile">{props.status ? <Profile /> : <Login />}</Route>
-        <Route path="/login">{props.status ? <Login /> : <Login />}</Route>
-        <Route path="/about">{props.status ? <About /> : <Login />}</Route>
-        <Route path="/users">{props.status ? <Users /> : <Login />}</Route>
-      </Switch>
-    </Router>
+    <>
+      <Router>
+        <Switch>
+          <Route exact path="/">
+            <Home />
+          </Route>
+
+          <Route path="/profile">
+            {props.status ? <Profile /> : <Login />}
+          </Route>
+          <Route path="/login">{props.status ? <Login /> : <Login />}</Route>
+          <Route path="/about">{props.status ? <About /> : <Login />}</Route>
+          <Route path="/users">{props.status ? <Users /> : <Login />}</Route>
+        </Switch>
+      </Router>
+    </>
   );
 }
 export const mapStateToProps = (state) => ({ status: state.status });

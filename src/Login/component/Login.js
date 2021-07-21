@@ -30,7 +30,7 @@ const Login = (props) => {
   };
 
   const onSucess = (res) => {
-    props.submitStatus("true");
+    //props.submitStatus("true");
     props.submitStatus("true");
     history.push("/");
     console.log(res.profileObj);

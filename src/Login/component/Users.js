@@ -1,11 +1,11 @@
-import Nav from "./Nav";
+//import Nav from "./Nav";
 const Users = () => {
   return (
     <>
       <div>
-        <div>
+        {/* <div>
           <Nav />
-        </div>
+        </div> */}
         <h2>What is a User?</h2>
         <p>
           Simply put, a paragraph is a collection of sentences all related to a

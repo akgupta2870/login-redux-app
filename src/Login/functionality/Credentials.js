@@ -30,10 +30,3 @@ export const Credential = [
     Status: "false",
   },
 ];
-
-export const city = [
-  { city: "Noida" },
-  { city: "Delhi" },
-  { city: "GOA" },
-  { city: "mumbai" },
-];
