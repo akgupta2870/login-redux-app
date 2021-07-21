@@ -6,9 +6,7 @@ import Users from "./Login/component/Users";
 import Profile from "./Login/component/Profile";
 import Login from "./Login/component/Login";
 import { connect } from "react-redux";
-//import { Nav } from "./Login/component/Nav";
-//import { Signup } from "./Login/component/Signup";
-//import { PrivateRoute } from "./Login/PrivateRoute";
+
 export function App(props) {
   console.log(props.status);
   return (

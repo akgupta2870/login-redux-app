@@ -3,7 +3,6 @@ import { TabContext, TabList } from "@material-ui/lab";
 import { useHistory } from "react-router-dom";
 import PersonPinIcon from "@material-ui/icons/PersonPin";
 import { connect } from "react-redux";
-//import { Redirect } from "react-router";
 export const Nav = (props) => {
   const history = useHistory();
 

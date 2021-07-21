@@ -9,9 +9,7 @@ export const Home = (props) => {
   return (
     <>
       <TabContext>
-        <div>
-          <Nav />
-        </div>
+        <Nav />
         <TabPanel>
           <h1>Welcome to HOME PAGE</h1>
           <p>

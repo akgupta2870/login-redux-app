@@ -39,57 +39,53 @@ const Login = (props) => {
   return (
     <>
       <div className={classes.usernamediv}>
-        <div>
-          <TextField
-            className={classes.TextFielddiv}
-            label="Username"
-            placeholder="Enter UserName"
-            value={props.username}
-            name="Username"
-            onChange={props.submitUsername}
-          />
-          {usernameError && (
-            <FormHelperText className={classes.helpertext}>
-              Please Enter valid Username
-            </FormHelperText>
-          )}
-        </div>
-        <div>
-          <TextField
-            label="Password"
-            type="password"
-            name="password"
-            autoComplete="current-password"
-            value={props.password}
-            onChange={props.submitPassword}
-          />
-          {passwordError && (
-            <FormHelperText className={classes.helpertext}>
-              Please Fill Valid Password
-            </FormHelperText>
-          )}
-        </div>
-        <div>
-          <Button
-            name="status"
-            variant="contained"
-            color="primary"
-            onClick={() => {
-              onSubmit();
-            }}
-          >
-            Login
-          </Button>
+        <TextField
+          className={classes.TextFielddiv}
+          label="Username"
+          placeholder="Enter UserName"
+          value={props.username}
+          name="Username"
+          onChange={props.submitUsername}
+        />
+        {usernameError && (
+          <FormHelperText className={classes.helpertext}>
+            Please Enter valid Username
+          </FormHelperText>
+        )}
 
-          <GoogleLogin
-            clientId="889107126365-46cjn6g2er5tr7964sdannsnnf53l4hg.apps.googleusercontent.com"
-            buttonText="Login"
-            onSuccess={onSucess}
-            onFailure={onFailure}
-            CookiePolicy={"single-host-origin"}
-            isSignedIn={false}
-          />
-        </div>
+        <TextField
+          label="Password"
+          type="password"
+          name="password"
+          autoComplete="current-password"
+          value={props.password}
+          onChange={props.submitPassword}
+        />
+        {passwordError && (
+          <FormHelperText className={classes.helpertext}>
+            Please Fill Valid Password
+          </FormHelperText>
+        )}
+
+        <Button
+          name="status"
+          variant="contained"
+          color="primary"
+          onClick={() => {
+            onSubmit();
+          }}
+        >
+          Login
+        </Button>
+
+        <GoogleLogin
+          clientId="889107126365-46cjn6g2er5tr7964sdannsnnf53l4hg.apps.googleusercontent.com"
+          buttonText="Login"
+          onSuccess={onSucess}
+          onFailure={onFailure}
+          CookiePolicy={"single-host-origin"}
+          isSignedIn={false}
+        />
       </div>
     </>
   );
